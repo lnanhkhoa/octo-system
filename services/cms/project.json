@@ -1,0 +1,65 @@
+{
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectRoot": "services/cms",
+  "root": "services/cms",
+  "sourceRoot": "services/cms",
+  "namedInputs": {
+    "codeInputs": [
+      "{projectRoot}/src/**/*.ts",
+      "{workspaceRoot}/.env"
+    ],
+    "keystoneOutputs": [
+      "{projectRoot}/schema.graphql",
+      "{projectRoot}/.keystone",
+      "{projectRoot}/node_modules/.prisma/"
+    ]
+  },
+  "targets": {
+    "build": {
+      "executor": "nx:run-commands",
+      "inputs": [
+        "codeInputs"
+      ],
+      "outputs": [
+        "{projectRoot}/node_modules/.prisma/",
+        "{projectRoot}/schema.graphql",
+        "{projectRoot}/.keystone"
+      ],
+      "options": {
+        "command": "yarn --cwd services/cms build"
+      },
+      "dependsOn": [
+        "^build"
+      ]
+    },
+    "dev:prepare": {
+      "executor": "nx:run-commands",
+      "inputs": [
+        "codeInputs"
+      ],
+      "outputs": [
+        "{projectRoot}/schema.graphql",
+        "{projectRoot}/.keystone",
+        "{projectRoot}/node_modules/.prisma/"
+      ],
+      "options": {
+        "command": "yarn --cwd services/cms dev:prepare"
+      },
+      "dependsOn": [
+        "^build"
+      ]
+    },
+    "dev": {
+      "executor": "nx:run-commands",
+      "inputs": [
+        "codeInputs"
+      ],
+      "options": {
+        "command": "yarn --cwd services/cms dev"
+      },
+      "dependsOn": [
+        "dev:prepare"
+      ]
+    }
+  }
+}
