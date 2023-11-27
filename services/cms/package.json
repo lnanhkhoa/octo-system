@@ -3,12 +3,12 @@
   "version": "1.0.2",
   "private": true,
   "scripts": {
-    "dev:prepare": "yarn keystone build --no-ui && keystone prisma db push --accept-data-loss",
+    "dev:prepare": "pnpm keystone build --no-ui && keystone prisma db push --accept-data-loss",
     "dev": "keystone dev",
     "start": "keystone start",
     "build": "keystone build",
     "prisma-generate": "prisma generate --schema=./schema.prisma",
-    "postinstall": "yarn prisma-generate"
+    "postinstall": "pnpm prisma-generate"
   },
   "dependencies": {
     "@keystone-6/auth": "^7.0.0",
