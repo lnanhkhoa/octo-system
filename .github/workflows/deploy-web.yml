@@ -6,7 +6,7 @@ on:
       - deploy-web-*
 
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo
