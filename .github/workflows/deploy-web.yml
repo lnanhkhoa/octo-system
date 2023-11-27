@@ -30,16 +30,8 @@ jobs:
       - name: Build Website
         env:
           NODE_OPTIONS: "--max_old_space_size=4096"
-          # cd services/ && rm -rf $(ls -1 | grep -v '^web$') && cd ..
         run: |
           pnpm i && pnpm nx run web:build
-          echo "${{ env.RELEASE_VERSION }}" > services/web/dist/RELEASE.txt
 
-      # - name: Install Vercel CLI
-      #   run: pnpm install --global vercel@latest
-
-      # - name: Build Project Artifacts
-      #   run: vercel build --token=${{ secrets.VERCEL_TOKEN }}
-
-      # - name: Deploy Project Artifacts to Vercel
-      #   run: vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }}
+      - name: Deploy Website
+        run: echo "Deploying Website"
