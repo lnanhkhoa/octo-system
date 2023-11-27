@@ -1,0 +1,57 @@
+name: "Build CMS"
+
+on:
+  push:
+    branches:
+      - deploy-cms-*
+    # paths:
+    #   - 'services/cms/**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            libs
+            services/cms
+            .github/workflows/cms.yml
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: "18"
+
+      - uses: pnpm/action-setup@v2
+        name: Install pnpm
+        with:
+          version: 8
+          run_install: false
+
+      - name: Build Keystone CMS
+        env:
+          NODE_OPTIONS: "--max_old_space_size=4096"
+        run: |
+          pnpm i && pnpm nx run cms:build
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            services/cms
+            libs
+            .github/workflows/cms.yml
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: "18"
+      - name: mockup deploy
+        run: echo "Deploying CMS"
