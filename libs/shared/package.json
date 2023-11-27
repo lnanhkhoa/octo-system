@@ -1,0 +1,24 @@
+{
+  "name": "@libs/shared",
+  "version": "0.0.1",
+  "private": true,
+  "exports": {
+    ".": {
+      "types": "./build/index.d.ts",
+      "require": "./build/index.js",
+      "import": "./build/index.js"
+    }
+  },
+  "types": "./build/index.d.ts",
+  "main": "./build/index.js",
+  "module": "./build/index.js",
+  "scripts": {
+    "build": "tsc -p tsconfig.json"
+  },
+  "files": [
+    "build"
+  ],
+  "devDependencies": {
+    "typescript": "^5.2.2"
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "UMD",
+    "moduleResolution": "NodeNext",
+    "removeComments": true,
+    "useDefineForClassFields": true,
+    "typeRoots": ["./node_modules/@types"],
+    "baseUrl": "./",
+    "declaration": false,
+    "rootDir": "./",
+    "outDir": "./build",
+    "sourceMap": true,
+    "importHelpers": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "inlineSourceMap": false,
+    "allowJs": true,
+    "esModuleInterop": true,
+    "isolatedModules": true,
+    "lib": ["ESNext"],
+    "skipLibCheck": true
+  },
+  "exclude": ["node_modules", "build"]
+}
